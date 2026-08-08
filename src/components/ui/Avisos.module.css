@@ -1,0 +1,87 @@
+.pilha {
+  position: absolute;
+  /* Acima da barra de abas — um aviso que cobre a navegação é um bug. */
+  bottom: calc(var(--barra-altura) + env(safe-area-inset-bottom, 0px) + var(--e-3));
+  left: var(--e-3);
+  right: var(--e-3);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  pointer-events: none;
+}
+
+.aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-3);
+  font-size: var(--t-13);
+  color: var(--texto);
+  pointer-events: auto;
+  animation: entrar var(--lento) var(--curva);
+}
+
+.icone {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+}
+
+.ok .icone {
+  color: var(--ok);
+}
+.erro .icone {
+  color: var(--perigo);
+}
+.erro {
+  border-color: var(--perigo-suave);
+}
+
+.texto {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.acao {
+  flex: 0 0 auto;
+  padding: var(--e-1) var(--e-2);
+  border-radius: var(--r-xs);
+  font-size: var(--t-13);
+  font-weight: var(--peso-forte);
+  color: var(--acento);
+  background: var(--acento-suave);
+}
+.acao:hover {
+  background: var(--acento-suave-2);
+}
+
+.fechar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-full);
+  color: var(--texto-3);
+}
+.fechar:hover {
+  background: var(--superficie-2);
+  color: var(--texto);
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

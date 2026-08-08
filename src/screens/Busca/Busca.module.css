@@ -1,0 +1,86 @@
+.escopo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--e-4);
+  background: var(--acento-suave);
+  font-size: var(--t-12);
+  color: var(--acento);
+  min-width: 0;
+}
+
+.escopo button {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 2px var(--e-2);
+  border-radius: var(--r-xs);
+  font-size: var(--t-11);
+  font-weight: var(--peso-forte);
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.filtros {
+  flex: 0 0 auto;
+  display: flex;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--divisor);
+}
+
+.filtros::-webkit-scrollbar {
+  display: none;
+}
+
+.filtro {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  min-height: 40px;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--superficie-2);
+  border: 1px solid transparent;
+  font-size: var(--t-12);
+  font-weight: var(--peso-medio);
+  color: var(--texto-2);
+  white-space: nowrap;
+  transition: background var(--rapido) var(--curva), color var(--rapido) var(--curva);
+}
+
+.filtro span {
+  opacity: 0.6;
+  font-size: var(--t-11);
+}
+
+.filtro:hover {
+  background: var(--superficie-3);
+}
+
+.filtroAtivo {
+  background: var(--acento);
+  color: var(--acento-texto);
+}
+
+.filtroAtivo span {
+  opacity: 0.8;
+}
+
+.filtroAtivo:hover {
+  background: var(--acento-forte);
+}
+
+.contagem {
+  padding: var(--e-3) var(--e-4) 0;
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+  font-weight: var(--peso-medio);
+  font-variant-numeric: tabular-nums;
+}

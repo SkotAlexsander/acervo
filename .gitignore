@@ -1,0 +1,36 @@
+# ── Dependências e saída de build ────────────────────────────────────────────
+node_modules/
+dist/
+.vite/
+*.local
+
+# ── Android ──────────────────────────────────────────────────────────────────
+# A pasta `android/` ENTRA no repositório: ela tem código escrito à mão
+# (MainActivity.java, AcessoArquivos.java, o AndroidManifest, os ícones).
+# O que fica de fora é o que a máquina gera e o que é segredo.
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+android/local.properties
+android/.idea/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/capacitor-cordova-android-plugins/
+
+# ── Assinatura: NUNCA versionar ──────────────────────────────────────────────
+# A chave assina o APK. Quem tem a chave publica atualização em nome do app.
+# O modelo público é `android/keystore.properties.exemplo`.
+*.keystore
+*.jks
+keystore.properties
+*.apk
+*.aab
+
+# ── Segredos e sistema ───────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

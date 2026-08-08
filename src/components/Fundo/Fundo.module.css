@@ -1,0 +1,185 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--palco);
+  pointer-events: none;
+}
+
+/* Um brilho suave no centro pra "levantar" o palco atrás da moldura. */
+.fundo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 70% at 50% 0%, var(--palco-2), transparent 70%);
+}
+
+.mancha {
+  position: absolute;
+  border-radius: 50%;
+  opacity: var(--mancha-opacidade);
+  will-change: transform;
+}
+
+.m1 {
+  width: 74vmax;
+  height: 74vmax;
+  top: -32vmax;
+  left: -22vmax;
+  background: radial-gradient(circle at 50% 50%, var(--mancha-1), transparent 62%);
+  animation: passeio1 34s ease-in-out infinite alternate;
+}
+
+.m2 {
+  width: 62vmax;
+  height: 62vmax;
+  bottom: -28vmax;
+  right: -18vmax;
+  background: radial-gradient(circle at 50% 50%, var(--mancha-2), transparent 64%);
+  animation: passeio2 41s ease-in-out infinite alternate;
+}
+
+.m3 {
+  width: 50vmax;
+  height: 50vmax;
+  top: 34%;
+  left: 52%;
+  background: radial-gradient(circle at 50% 50%, var(--mancha-3), transparent 66%);
+  animation: passeio3 47s ease-in-out infinite alternate;
+}
+
+
+.m4 {
+  width: 44vmax;
+  height: 44vmax;
+  bottom: 6%;
+  left: -14vmax;
+  background: radial-gradient(circle at 50% 50%, var(--mancha-4), transparent 65%);
+  animation: passeio4 53s ease-in-out infinite alternate;
+}
+
+/* Faixa de luz diagonal. Anda de um canto ao outro em 28s.
+   `linear-gradient` largo e `translate3d`: nenhum blur, nenhum recálculo. */
+.faixa {
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  width: 90%;
+  height: 160%;
+  opacity: var(--faixa-opacidade);
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    var(--faixa-cor) 45%,
+    var(--faixa-cor) 55%,
+    transparent 100%
+  );
+  transform: rotate(8deg);
+  animation: varrer 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Vinheta: fecha as bordas e joga o olho pro centro, que é onde a moldura
+   do celular fica. Parada de propósito — ver o comentário do componente. */
+.vinheta {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(115% 90% at 50% 45%, transparent 40%, var(--vinheta) 100%);
+}
+
+/* Grão: quebra o degradê liso, que é o que faz um fundo assim parecer barato.
+   O SVG vai embutido em data URI — nada de requisição extra. */
+/* `inset: 0`, não negativo: a textura já se repete sozinha, e estourar a
+   caixa fazia o container reportar rolagem horizontal (invisível, porque tem
+   overflow:hidden — mas qualquer auditoria de layout acusava). */
+.grao {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grao-opacidade);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+@keyframes passeio1 {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(9vmax, 7vmax, 0) scale(1.12);
+  }
+}
+
+@keyframes passeio2 {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+  to {
+    transform: translate3d(-11vmax, -6vmax, 0) scale(0.94);
+  }
+}
+
+@keyframes passeio3 {
+  from {
+    transform: translate3d(-4vmax, 3vmax, 0) scale(0.9);
+  }
+  to {
+    transform: translate3d(6vmax, -8vmax, 0) scale(1.15);
+  }
+}
+
+@keyframes passeio4 {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+  to {
+    transform: translate3d(8vmax, -10vmax, 0) scale(0.9);
+  }
+}
+
+/* A faixa sai de fora à esquerda e some fora à direita. O `ease-in-out` com
+   `alternate` desligado faria um "pulo" no reinício — por isso a opacidade
+   cai a zero nas duas pontas, e o retorno acontece invisível. */
+@keyframes varrer {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(8deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--faixa-opacidade);
+  }
+  88% {
+    opacity: var(--faixa-opacidade);
+  }
+  100% {
+    transform: translate3d(190vw, 0, 0) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+/* Desligado nos Ajustes: as manchas ficam, paradas e mais discretas.
+   Sumir com elas deixaria o fundo chapado e o app pareceria outro. */
+:global(html[data-sem-efeitos]) .mancha {
+  animation: none;
+  opacity: calc(var(--mancha-opacidade) * 0.45);
+}
+
+:global(html[data-sem-efeitos]) .grao {
+  opacity: calc(var(--grao-opacidade) * 0.5);
+}
+
+/* A faixa é 100% movimento: parada ela vira um borrão claro atravessado na
+   tela, que fica pior do que não ter. Com os efeitos desligados, ela sai. */
+:global(html[data-sem-efeitos]) .faixa {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mancha {
+    animation: none;
+  }
+
+  .faixa {
+    display: none;
+  }
+}

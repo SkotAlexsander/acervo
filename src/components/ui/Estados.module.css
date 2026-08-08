@@ -1,0 +1,149 @@
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--e-10) var(--e-5);
+  gap: var(--e-2);
+}
+
+.vazioIcone {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin-bottom: var(--e-2);
+  border-radius: var(--r-lg);
+  background: var(--superficie-2);
+  color: var(--texto-3);
+}
+
+.vazioIconeErro {
+  background: var(--perigo-suave);
+  color: var(--perigo);
+}
+
+.vazioTitulo {
+  font-size: var(--t-15);
+  font-weight: var(--peso-forte);
+  color: var(--texto);
+}
+
+.vazioTexto {
+  font-size: var(--t-13);
+  color: var(--texto-3);
+  line-height: 1.5;
+  max-width: 30ch;
+  overflow-wrap: anywhere;
+}
+
+.vazioAcao {
+  margin-top: var(--e-3);
+}
+
+/* ── Esqueletos ─────────────────────────────────────────────────────────── */
+
+.esqueletoLinha {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-2) var(--e-3);
+  min-height: 60px;
+}
+
+.esqueletoTextos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+}
+
+.pulsoSelo {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  animation: pulsar 1.4s ease-in-out infinite;
+}
+
+.pulsoLinha {
+  height: 11px;
+  border-radius: var(--r-full);
+  background: var(--superficie-2);
+  animation: pulsar 1.4s ease-in-out infinite;
+}
+
+.pulsoQuadrado {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  animation: pulsar 1.4s ease-in-out infinite;
+}
+
+.esqueletoGrade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: var(--e-2);
+  padding: var(--e-2);
+}
+
+.esqueletoLadrilho {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-2);
+}
+
+@keyframes pulsar {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* ── Progresso ──────────────────────────────────────────────────────────── */
+
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+}
+
+.trilho {
+  flex: 1;
+  height: 3px;
+  border-radius: var(--r-full);
+  background: var(--superficie-3);
+  overflow: hidden;
+}
+
+.pulga {
+  width: 38%;
+  height: 100%;
+  border-radius: var(--r-full);
+  background: var(--acento);
+  animation: correr 1.15s ease-in-out infinite;
+}
+
+.progressoRotulo {
+  flex: 0 0 auto;
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes correr {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(365%);
+  }
+}

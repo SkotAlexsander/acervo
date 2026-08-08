@@ -1,0 +1,23 @@
+# Mantém a formatação igual em qualquer editor.
+# Sem isto, quem abrir o projeto no VS Code, no Android Studio e no Notepad++
+# gera três estilos diferentes de espaço e o diff fica ilegível.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{java,gradle}]
+indent_size = 4
+
+[*.md]
+# Markdown usa dois espaços no fim da linha pra forçar quebra.
+trim_trailing_whitespace = false
+
+[*.{bat,cmd}]
+end_of_line = crlf

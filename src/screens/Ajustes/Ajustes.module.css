@@ -1,0 +1,184 @@
+.bloco {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--e-2);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  text-align: left;
+  transition: border-color var(--rapido) var(--curva);
+}
+
+button.bloco:hover {
+  border-color: var(--borda-forte);
+}
+
+.blocoDemo {
+  background: linear-gradient(160deg, var(--acento-suave), transparent 70%);
+}
+
+.blocoOk {
+  background: linear-gradient(160deg, var(--ok-suave), transparent 70%);
+}
+
+.linha {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+}
+
+.linhaIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-xs);
+  background: var(--superficie-2);
+  color: var(--texto-2);
+}
+
+.linhaTextos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.linhaTitulo {
+  font-size: var(--t-14);
+  font-weight: var(--peso-medio);
+  color: var(--texto);
+  line-height: 1.3;
+}
+
+.linhaNota {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  line-height: 1.45;
+}
+
+/* ── Interruptor ────────────────────────────────────────────────────────── */
+
+.chave {
+  flex: 0 0 auto;
+  position: relative;
+  width: 44px;
+  height: 26px;
+  margin-top: 4px;
+  border-radius: var(--r-full);
+  background: var(--superficie-3);
+  border: 1px solid var(--borda);
+  transition: background var(--normal) var(--curva), border-color var(--normal) var(--curva);
+}
+
+.chaveLigada {
+  background: var(--acento);
+  border-color: var(--acento);
+}
+
+.chaveBola {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--r-full);
+  background: #fff;
+  box-shadow: var(--sombra-1);
+  transition: transform var(--normal) var(--curva);
+}
+
+.chaveLigada .chaveBola {
+  transform: translateX(18px);
+}
+
+/* ── Segmentado ─────────────────────────────────────────────────────────── */
+
+.segmentado {
+  display: flex;
+  gap: 2px;
+  margin-top: var(--e-3);
+  padding: 3px;
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+}
+
+.segmento {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-1);
+  min-height: 42px;
+  padding: 0 var(--e-2);
+  border-radius: 9px;
+  font-size: var(--t-12);
+  font-weight: var(--peso-medio);
+  color: var(--texto-3);
+  white-space: nowrap;
+  transition: background var(--rapido) var(--curva), color var(--rapido) var(--curva),
+    box-shadow var(--rapido) var(--curva);
+}
+
+.segmento:hover {
+  color: var(--texto);
+}
+
+.segmentoAtivo {
+  background: var(--superficie);
+  color: var(--texto);
+  font-weight: var(--peso-forte);
+  box-shadow: var(--sombra-1);
+}
+
+/* ── Ação com seta ──────────────────────────────────────────────────────── */
+
+.acao {
+  composes: bloco;
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: 58px;
+}
+
+.acaoSeta {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+  opacity: 0.6;
+}
+
+/* ── Textos ─────────────────────────────────────────────────────────────── */
+
+.estatistica {
+  margin-top: var(--e-3);
+  padding-top: var(--e-3);
+  border-top: 1px solid var(--divisor);
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+.blocoAcoes {
+  margin-top: var(--e-3);
+}
+
+.sobre {
+  font-size: var(--t-13);
+  color: var(--texto-2);
+  line-height: 1.55;
+}
+
+.sobre strong {
+  color: var(--texto);
+  font-weight: var(--peso-forte);
+}
+
+.sobreVersao {
+  margin-top: var(--e-2);
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}

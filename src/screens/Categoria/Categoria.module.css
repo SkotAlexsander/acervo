@@ -1,0 +1,82 @@
+.selo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-sm);
+}
+
+/* Recortes de tamanho e período. Rolam pro lado — cabem seis fichas e a
+   moldura tem 420px; empilhar em duas linhas comeria a lista. */
+.recortes {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--divisor);
+}
+
+.recortes::-webkit-scrollbar {
+  display: none;
+}
+
+.recorte {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--superficie-2);
+  font-size: var(--t-12);
+  font-weight: var(--peso-medio);
+  color: var(--texto-2);
+  white-space: nowrap;
+  transition: background var(--rapido) var(--curva), color var(--rapido) var(--curva);
+}
+
+.recorte:hover {
+  background: var(--superficie-3);
+}
+
+.recorteAtivo {
+  background: var(--acento);
+  color: var(--acento-texto);
+}
+
+.recorteAtivo:hover {
+  background: var(--acento-forte);
+}
+
+.recorteDivisor {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 18px;
+  background: var(--borda-forte);
+}
+
+.opcaoOrdem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: 50px;
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-sm);
+  font-size: var(--t-15);
+  color: var(--texto);
+  text-align: left;
+}
+
+.opcaoOrdem:hover {
+  background: var(--superficie-2);
+}
+
+.opcaoOrdemAtiva {
+  background: var(--acento-suave);
+  color: var(--acento);
+  font-weight: var(--peso-forte);
+}

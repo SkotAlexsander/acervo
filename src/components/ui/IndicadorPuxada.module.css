@@ -1,0 +1,38 @@
+.faixa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: 0 0 auto;
+  /* Sem transição enquanto o dedo está na tela — o movimento tem que ser o
+     do dedo. A transição só entra quando solta, e é o próprio React que
+     troca a altura de uma vez. */
+}
+
+.anel {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-full);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-2);
+  color: var(--texto-3);
+}
+
+.armado {
+  color: var(--acento);
+  border-color: var(--acento-suave-2);
+}
+
+.girando {
+  color: var(--acento);
+  animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

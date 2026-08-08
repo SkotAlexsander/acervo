@@ -1,0 +1,106 @@
+.explicacao {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  margin: var(--e-3) var(--e-3) 0;
+  padding: var(--e-3);
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  font-size: var(--t-12);
+  color: var(--texto-2);
+  line-height: 1.4;
+}
+
+.explicacao svg {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+}
+
+.lista {
+  padding: var(--e-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  width: 100%;
+  padding: var(--e-2);
+  border-radius: var(--r-md);
+  text-align: left;
+  transition: background var(--rapido) var(--curva);
+}
+
+.item:hover {
+  background: var(--superficie-2);
+}
+
+.itemMarcado {
+  background: var(--acento-suave);
+}
+.itemMarcado:hover {
+  background: var(--acento-suave-2);
+}
+
+.caixinha {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  border: 1.8px solid var(--borda-forte);
+  background: var(--superficie);
+  color: transparent;
+  transition: background var(--rapido) var(--curva), border-color var(--rapido) var(--curva);
+}
+
+.caixinhaMarcada {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--acento-texto);
+}
+
+.itemIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-xs);
+  background: var(--superficie-2);
+}
+
+.itemTextos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.itemNome {
+  font-size: var(--t-14);
+  font-weight: var(--peso-medio);
+}
+
+.itemMeta {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+.itemOrigem {
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  opacity: 0.85;
+}
+
+.itemOrigem svg {
+  flex: 0 0 auto;
+}

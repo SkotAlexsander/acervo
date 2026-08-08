@@ -1,0 +1,310 @@
+/* Layout compartilhado por todas as telas. Uma tela nova compõe daqui. */
+
+.tela {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho fixo no topo da tela — não rola junto com a lista. */
+.cabecalho {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: 56px;
+  padding: var(--e-2) var(--e-3);
+  background: var(--vidro);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border-bottom: 1px solid var(--divisor);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cabecalho {
+    background: var(--superficie);
+  }
+}
+
+.cabecalhoTextos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.titulo {
+  font-size: var(--t-17);
+  font-weight: var(--peso-forte);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subtitulo {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.acoesCabecalho {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Corpo rolável. `padding-bottom` generoso: a última linha da lista não pode
+   ficar escondida atrás dos avisos flutuantes. */
+.corpo {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: var(--e-10);
+  scrollbar-width: thin;
+  scrollbar-color: var(--borda-forte) transparent;
+}
+
+.corpo::-webkit-scrollbar {
+  width: 7px;
+}
+.corpo::-webkit-scrollbar-track {
+  background: transparent;
+}
+.corpo::-webkit-scrollbar-thumb {
+  background: var(--borda-forte);
+  border-radius: var(--r-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ── Blocos ─────────────────────────────────────────────────────────────── */
+
+.secao {
+  padding: var(--e-4) var(--e-4) 0;
+}
+
+.secaoCabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+  margin-bottom: var(--e-3);
+}
+
+.secaoTitulo {
+  font-size: var(--t-12);
+  font-weight: var(--peso-forte);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--texto-3);
+}
+
+.secaoLink {
+  display: inline-flex;
+  align-items: center;
+  /* Parece um link de texto, mas é um botão de dedo: 40px de altura com
+     recuo negativo, pra ganhar alvo sem desalinhar o cabeçalho da seção. */
+  min-height: 40px;
+  /* Só na vertical. O recuo à direita também parecia boa ideia, mas jogava
+     o botão 8px além da caixa do cabeçalho e o container passava a reportar
+     rolagem horizontal. Alinhamento não vale um estouro de layout. */
+  margin: -8px 0;
+  font-size: var(--t-12);
+  font-weight: var(--peso-medio);
+  color: var(--acento);
+  padding: var(--e-1) var(--e-2);
+  border-radius: var(--r-xs);
+}
+.secaoLink:hover {
+  background: var(--acento-suave);
+}
+
+.cartao {
+  border-radius: var(--r-lg);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-1);
+  overflow: hidden;
+}
+
+.lista {
+  padding: var(--e-1) var(--e-2);
+}
+
+/* ── Grade de arquivos ──────────────────────────────────────────────────── */
+
+.grade {
+  display: grid;
+  /* auto-fill com mínimo de 92px: 4 colunas na moldura de 420px, e desce
+     sozinho pra 3 num celular estreito, sem media query. */
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: var(--e-1);
+  padding: var(--e-2);
+}
+
+/* ── Campo de busca ─────────────────────────────────────────────────────── */
+
+.busca {
+  /* `flex: 1` + `min-width: 0` é o par que impede o campo de empurrar o
+     cabeçalho: sem eles o input assume a largura intrínseca (~20 caracteres)
+     e a tela inteira rola pro lado num celular de 320px. */
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque-min);
+  padding: 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--superficie-2);
+  border: 1.5px solid transparent;
+  color: var(--texto-3);
+  transition: border-color var(--rapido) var(--curva), background var(--rapido) var(--curva);
+}
+
+.busca:focus-within {
+  border-color: var(--acento);
+  background: var(--superficie);
+}
+
+.buscaEntrada {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Input ignora `min-width:0` sozinho em alguns motores — o `width:100%`
+     garante que ele encolha junto com o container. */
+  width: 100%;
+  /* Ocupa a altura toda da pílula: assim o toque em qualquer ponto dela cai
+     no campo. Com o input de 23px, dois terços da pílula eram zona morta. */
+  align-self: stretch;
+  /* 16px trava o zoom automático do iOS ao focar. */
+  font-size: 16px;
+  color: var(--texto);
+}
+
+.buscaEntrada::placeholder {
+  color: var(--texto-3);
+  font-size: var(--t-14);
+}
+
+.buscaLimpar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  /* 34px de alvo com um "x" de 14px dentro: o desenho continua discreto,
+     o alvo de toque não. */
+  width: 34px;
+  height: 34px;
+  margin-right: -6px;
+  border-radius: var(--r-full);
+  color: var(--texto-3);
+  background: var(--superficie-3);
+}
+.buscaLimpar:hover {
+  color: var(--texto);
+}
+
+/* ── Barra de seleção múltipla ──────────────────────────────────────────── */
+
+.barraSelecao {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: var(--e-2) var(--e-2);
+  background: var(--acento-suave);
+  border-bottom: 1px solid var(--divisor);
+  animation: descer var(--normal) var(--curva);
+}
+
+.barraSelecaoContagem {
+  flex: 1;
+  min-width: 0;
+  padding-left: var(--e-2);
+  font-size: var(--t-13);
+  font-weight: var(--peso-forte);
+  color: var(--acento);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes descer {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Trilha de navegação ────────────────────────────────────────────────── */
+
+.trilha {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: var(--e-2) var(--e-3);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--divisor);
+  background: var(--superficie);
+  scrollbar-width: none;
+}
+
+.trilha::-webkit-scrollbar {
+  display: none;
+}
+
+.trilhaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  flex: 0 0 auto;
+}
+
+.trilhaBotao {
+  display: inline-flex;
+  align-items: center;
+  /* A trilha é o atalho mais usado pra subir de pasta — precisa de alvo. */
+  min-height: 36px;
+  padding: var(--e-1) var(--e-2);
+  border-radius: var(--r-xs);
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trilhaBotao:hover {
+  background: var(--superficie-2);
+  color: var(--texto);
+}
+
+.trilhaAtual {
+  color: var(--texto);
+  font-weight: var(--peso-forte);
+}
+
+.trilhaSeta {
+  color: var(--texto-3);
+  opacity: 0.5;
+  flex: 0 0 auto;
+}

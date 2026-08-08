@@ -1,0 +1,244 @@
+/*
+  A casca do app.
+
+  No PC o app aparece dentro de uma MOLDURA de celular centralizada — porque é
+  um app de celular, e ver 1920px de largura mentiria sobre como ele vai ficar
+  na mão. No celular (ou dentro do APK) a moldura some e o app ocupa a tela toda.
+*/
+
+.palco {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-3);
+  padding: var(--e-5);
+}
+
+.moldura {
+  position: relative;
+  width: 100%;
+  max-width: var(--moldura-largura);
+  height: 100%;
+  max-height: var(--moldura-altura);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: var(--fundo);
+  border: 1px solid var(--vidro-borda);
+  box-shadow: var(--sombra-moldura);
+  /* Prende o conteúdo dentro do canto arredondado no Safari/WebView. */
+  isolation: isolate;
+}
+
+.etiqueta {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  letter-spacing: 0.01em;
+}
+
+.etiquetaPonto {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-full);
+  background: var(--ok);
+  box-shadow: 0 0 0 3px var(--ok-suave);
+}
+
+/* Área rolável de cada tela. `flex: 1` + `min-height: 0` é o par que impede
+   o conteúdo de empurrar a barra de abas pra fora da moldura. */
+.conteudo {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tela cheia: celular de verdade, ou janela estreita/baixa ────────────── */
+/* 560px pega o celular deitado; a altura pega janela baixa no PC, onde a
+   moldura de 880px não caberia e ficaria cortada. */
+
+@media (max-width: 560px), (max-height: 620px) {
+  .palco {
+    padding: 0;
+    gap: 0;
+  }
+
+  .moldura {
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    /* Respeita o recorte da câmera e a barra de gestos do Android/iOS. */
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .etiqueta {
+    display: none;
+  }
+}
+
+/* Dentro do APK a moldura nunca aparece, mesmo em tablet. */
+:global(html[data-nativo]) .palco {
+  padding: 0;
+  gap: 0;
+}
+
+:global(html[data-nativo]) .moldura {
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+:global(html[data-nativo]) .etiqueta {
+  display: none;
+}
+
+/* ── Tela de arranque ───────────────────────────────────────────────────── */
+
+.arranque {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-4);
+  padding: var(--e-6);
+  text-align: center;
+}
+
+.arranqueMarca {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: var(--r-lg);
+  background: var(--acento);
+  color: var(--acento-texto);
+  box-shadow: var(--sombra-acento);
+  animation: respirar 2.2s ease-in-out infinite;
+}
+
+.arranqueTexto {
+  font-size: var(--t-13);
+  color: var(--texto-3);
+}
+
+@keyframes respirar {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.94);
+    opacity: 0.78;
+  }
+}
+
+/* ── Faixa de aviso do provider (permissão negada no Android) ────────────── */
+
+.faixaAviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-2);
+  margin: var(--e-3) var(--e-3) 0;
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--alerta-suave);
+  border: 1px solid transparent;
+  color: var(--texto);
+  font-size: var(--t-12);
+  line-height: 1.5;
+}
+
+.faixaAvisoIcone {
+  flex: 0 0 auto;
+  color: var(--alerta);
+  margin-top: 1px;
+}
+
+.faixaAvisoFechar {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+  padding: 2px;
+  border-radius: var(--r-xs);
+}
+.faixaAvisoFechar:hover {
+  color: var(--texto);
+}
+
+/* ── Transição entre telas ──────────────────────────────────────────────── */
+/*
+  Sobe 10px e aparece. Curto (240ms) e só em `opacity`/`transform`, que é o
+  par que a GPU resolve sozinha — uma transição que engasga é pior que
+  transição nenhuma, porque a pessoa sente o app lento e não sabe por quê.
+
+  `both` mantém o estado inicial antes de começar: sem isso, o primeiro
+  quadro mostra a tela já posicionada e depois ela "pula" pro começo.
+*/
+.transicao {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  animation: entrarTela 240ms var(--curva) both;
+}
+
+@keyframes entrarTela {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Com os efeitos desligados nos Ajustes, a tela só aparece — sem deslocar. */
+:global(html[data-sem-efeitos]) .transicao {
+  animation-name: aparecerTela;
+}
+
+@keyframes aparecerTela {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Dica do gesto de voltar (deslizar da borda esquerda) ────────────────── */
+
+.dicaVoltar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 60px;
+  border-radius: 0 var(--r-full) var(--r-full) 0;
+  background: var(--vidro);
+  border: 1px solid var(--vidro-borda);
+  border-left: none;
+  backdrop-filter: blur(10px) saturate(150%);
+  color: var(--acento);
+  box-shadow: var(--sombra-2);
+  pointer-events: none;
+}

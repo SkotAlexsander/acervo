@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
+
+        <activity
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation"
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBarLaunch"
+            android:launchMode="singleTask"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+
+    <!--
+        PERMISSÕES
+
+        `MANAGE_EXTERNAL_STORAGE` é o que permite enxergar o armazenamento
+        inteiro no Android 11 ou mais novo. Ela NÃO é concedida por um diálogo:
+        o usuário precisa ir às configurações do sistema — por isso o app tem
+        uma tela que leva ele direto pra lá.
+
+        A Play Store restringe muito essa permissão, mas isto aqui é um app
+        pessoal instalado à mão. O `tools:ignore` só silencia o aviso do
+        analisador, que está correto em geral e não se aplica a este caso.
+
+        As duas de baixo cobrem Android 10 e anteriores, onde a permissão de
+        armazenamento ainda era a clássica.
+    -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+
+    <!--
+        Notificação. Do Android 13 em diante ela é pedida em tempo de
+        execução, como câmera ou microfone — declarar aqui só dá o DIREITO
+        de perguntar. Quem pergunta é o interruptor nos Ajustes, e ele vem
+        desligado: o app não manda aviso nenhum sem ser autorizado.
+    -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- O app não fala com a internet. A declaração fica porque o WebView do
+         Capacitor a exige pra servir os próprios arquivos locais. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

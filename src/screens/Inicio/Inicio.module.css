@@ -1,0 +1,415 @@
+/* ── Marca ──────────────────────────────────────────────────────────────── */
+
+.marca {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.marcaSelo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: var(--acento);
+  color: var(--acento-texto);
+  box-shadow: var(--sombra-acento);
+}
+
+.marcaTextos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.marcaNome {
+  font-size: var(--t-17);
+  font-weight: var(--peso-negrito);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.marcaSub {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  line-height: 1.2;
+}
+
+.botaoTema {
+  display: grid;
+  place-items: center;
+  width: var(--toque-min);
+  height: var(--toque-min);
+  border-radius: var(--r-full);
+  color: var(--texto-2);
+  transition: background var(--rapido) var(--curva), color var(--rapido) var(--curva);
+}
+
+.botaoTema:hover {
+  background: var(--superficie-2);
+  color: var(--texto);
+}
+
+/* ── Busca ──────────────────────────────────────────────────────────────── */
+
+.blocoBusca {
+  padding: var(--e-3) var(--e-4) 0;
+}
+
+.gatilhoBusca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 0 var(--e-4);
+  border-radius: var(--r-full);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-1);
+  color: var(--texto-3);
+  font-size: var(--t-14);
+  text-align: left;
+  transition: border-color var(--rapido) var(--curva), box-shadow var(--rapido) var(--curva);
+}
+
+.gatilhoBusca:hover {
+  border-color: var(--borda-forte);
+  box-shadow: var(--sombra-2);
+}
+
+.gatilhoBusca span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Cartão de armazenamento ────────────────────────────────────────────── */
+
+.cartaoDisco {
+  padding: var(--e-4);
+  border-radius: var(--r-lg);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-2);
+}
+
+.discoTopo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+
+.discoIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-sm);
+  background: var(--acento-suave);
+  color: var(--acento);
+}
+
+.discoTextos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.discoRotulo {
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+  font-weight: var(--peso-medio);
+}
+
+/*
+  Tela de 280px (Galaxy Fold fechado): "ARMAZENAMENTO" tem 13 letras, e o
+  espaçamento de 0.06em sozinho custa quase 9px — o suficiente pra estourar
+  os 108px que sobram ao lado do anel. Apertar as letras resolve sem cortar
+  a palavra; truncar pra "ARMAZENAMENT…" seria pior que o problema.
+*/
+@media (max-width: 300px) {
+  .discoRotulo {
+    letter-spacing: 0.01em;
+  }
+}
+
+.discoValor {
+  font-size: var(--t-15);
+  font-weight: var(--peso-forte);
+  letter-spacing: -0.01em;
+}
+
+.discoPorcento {
+  flex: 0 0 auto;
+  font-size: var(--t-20);
+  font-weight: var(--peso-negrito);
+  letter-spacing: -0.03em;
+  color: var(--texto-2);
+}
+
+.barra {
+  display: flex;
+  gap: 2px;
+  height: 9px;
+  margin: var(--e-4) 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--superficie-3);
+  overflow: hidden;
+}
+
+.segmento {
+  height: 100%;
+  min-width: 3px;
+  border-radius: 2px;
+  transition: width var(--lento) var(--curva);
+}
+
+.discoRodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+
+.discoLivre {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+.discoAcao {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  min-height: 40px;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--acento-suave);
+  color: var(--acento);
+  font-size: var(--t-12);
+  font-weight: var(--peso-forte);
+  margin-left: auto;
+}
+
+.discoAcao:hover {
+  background: var(--acento-suave-2);
+}
+
+.discoSelo {
+  padding: 1px var(--e-2);
+  border-radius: var(--r-full);
+  background: var(--acento);
+  color: var(--acento-texto);
+  font-size: var(--t-11);
+}
+
+/* ── Categorias ─────────────────────────────────────────────────────────── */
+
+.contando {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  font-style: italic;
+}
+
+.gradeCategorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--e-2);
+}
+
+.categoria {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-1);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  text-align: left;
+  transition: transform var(--rapido) var(--curva), box-shadow var(--rapido) var(--curva),
+    border-color var(--rapido) var(--curva);
+}
+
+.categoria:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--sombra-2);
+  border-color: var(--borda-forte);
+}
+
+.categoria:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.categoria:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+
+.categoriaIcone {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: var(--e-1);
+  border-radius: var(--r-sm);
+}
+
+.categoriaNome {
+  font-size: var(--t-13);
+  font-weight: var(--peso-forte);
+  letter-spacing: -0.01em;
+}
+
+.categoriaMeta {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+}
+
+/* "Outros" — faixa larga, fora da grade. Deitado, porque é o balaio do
+   resto e não merece o mesmo peso visual das seis categorias principais. */
+.categoriaLarga {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: 56px;
+  margin-top: var(--e-2);
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  text-align: left;
+  transition: border-color var(--rapido) var(--curva), transform var(--rapido) var(--curva);
+}
+
+.categoriaLarga:hover {
+  border-color: var(--borda-forte);
+}
+.categoriaLarga:active {
+  transform: scale(0.985);
+}
+
+.categoriaLarga .categoriaIcone {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+}
+
+.categoriaLarga .categoriaNome {
+  flex: 1;
+  min-width: 0;
+}
+
+.categoriaSeta {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+  opacity: 0.6;
+}
+
+/* ── Fitas horizontais (favoritos, recentes) ────────────────────────────── */
+
+.fita {
+  display: flex;
+  gap: var(--e-2);
+  overflow-x: auto;
+  padding-bottom: var(--e-1);
+  /* Sangra até a borda pra deixar claro que rola pro lado. */
+  margin: 0 calc(var(--e-4) * -1);
+  padding-left: var(--e-4);
+  padding-right: var(--e-4);
+  scrollbar-width: none;
+}
+
+.fita::-webkit-scrollbar {
+  display: none;
+}
+
+.ficha {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  max-width: 170px;
+  min-height: 38px;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-full);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  font-size: var(--t-13);
+  color: var(--texto-2);
+  transition: border-color var(--rapido) var(--curva), color var(--rapido) var(--curva);
+}
+
+.ficha:hover {
+  border-color: var(--borda-forte);
+  color: var(--texto);
+}
+
+/* ── Atalhos ────────────────────────────────────────────────────────────── */
+
+/*
+  `minmax(0, 1fr)`, não `1fr`.
+
+  Em CSS Grid, `1fr` tem largura mínima AUTOMÁTICA — ou seja, a coluna nunca
+  fica menor que o conteúdo dela. Um atalho chamado "Downloads" empurrava a
+  coluna pra 143px, e as duas somadas estouravam a tela em 32px num aparelho
+  de 280px. O `minmax(0, …)` autoriza a coluna a encolher; o `.corta` de
+  dentro do atalho cuida do nome que não couber.
+*/
+.gradeAtalhos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-2);
+}
+
+.atalho {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  font-size: var(--t-13);
+  font-weight: var(--peso-medio);
+  text-align: left;
+  transition: border-color var(--rapido) var(--curva), transform var(--rapido) var(--curva);
+}
+
+.atalho:hover {
+  border-color: var(--borda-forte);
+}
+.atalho:active {
+  transform: scale(0.97);
+}
+
+.atalhoIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-xs);
+  background: var(--superficie-2);
+}
+
+/* ── Rodapé ─────────────────────────────────────────────────────────────── */
+
+.rodape {
+  padding: var(--e-6) var(--e-4) var(--e-4);
+  text-align: center;
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}

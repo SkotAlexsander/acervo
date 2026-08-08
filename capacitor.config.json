@@ -1,0 +1,11 @@
+{
+  "appId": "br.pessoal.acervo",
+  "appName": "Acervo",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

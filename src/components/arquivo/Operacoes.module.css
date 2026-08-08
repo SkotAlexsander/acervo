@@ -1,0 +1,491 @@
+/*
+  Estilo COMPARTILHADO das folhas de operação sobre arquivo:
+  Converter (lote), Transformar (formato), Proteger (senha) e Mais Leve.
+
+  Ficam juntas porque são a mesma tela por baixo — cabeçalho com o arquivo,
+  escolha, barra de progresso, nota, erro. Quando esse arquivo se chamava
+  `Converter.module.css`, cada folha nova copiava as sete classes de sempre;
+  na primeira mudança de espaçamento, três ficavam pra trás.
+*/
+
+.resumo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  margin: 0 var(--e-1) var(--e-4);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie-2);
+}
+
+.resumoIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  background: var(--acento-suave);
+  color: var(--acento);
+}
+
+.resumoTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.resumoTextos strong {
+  font-size: var(--t-14);
+  font-weight: var(--peso-forte);
+}
+
+.resumoTextos span {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding: 0 var(--e-1);
+}
+
+.rotulo {
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+  font-weight: var(--peso-medio);
+}
+
+.entradaCaixa {
+  display: flex;
+  align-items: center;
+  min-height: var(--toque-min);
+  padding-right: var(--e-3);
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  border: 1.5px solid var(--borda);
+  transition: border-color var(--rapido) var(--curva), background var(--rapido) var(--curva);
+}
+
+.entradaCaixa:focus-within {
+  border-color: var(--acento);
+  background: var(--superficie);
+}
+
+.entrada {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  align-self: stretch;
+  padding: 0 var(--e-3);
+  /* 16px trava o zoom automático do iOS ao focar. */
+  font-size: 16px;
+  color: var(--texto);
+}
+
+.extensao {
+  flex: 0 0 auto;
+  font-size: var(--t-13);
+  font-weight: var(--peso-forte);
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.destino {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-1) 0;
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+.destino strong {
+  color: var(--texto-2);
+  font-weight: var(--peso-medio);
+}
+
+.destino svg {
+  flex: 0 0 auto;
+}
+
+.nota,
+.notaDemo,
+.impedimento,
+.erro {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-2);
+  margin: var(--e-3) var(--e-1) 0;
+  padding: var(--e-3);
+  border-radius: var(--r-sm);
+  font-size: var(--t-12);
+  line-height: 1.5;
+}
+
+.nota,
+.notaDemo {
+  background: var(--superficie-2);
+  color: var(--texto-2);
+}
+
+.notaDemo {
+  background: var(--acento-suave);
+}
+
+.nota svg,
+.notaDemo svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--texto-3);
+}
+
+.notaDemo svg {
+  color: var(--acento);
+}
+
+.impedimento {
+  background: var(--alerta-suave);
+  color: var(--texto-2);
+}
+
+.impedimento svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--alerta);
+}
+
+.erro {
+  background: var(--perigo-suave);
+  color: var(--perigo);
+}
+
+.erro svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+/* ── Progresso ──────────────────────────────────────────────────────────── */
+
+.progresso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  margin: var(--e-4) var(--e-1) 0;
+}
+
+.trilho {
+  height: 5px;
+  border-radius: var(--r-full);
+  background: var(--superficie-3);
+  overflow: hidden;
+}
+
+.preenchido {
+  height: 100%;
+  border-radius: var(--r-full);
+  background: var(--acento);
+  transition: width var(--normal) var(--curva);
+}
+
+.etapa {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Lista de escolhas (formato de destino, preset de qualidade) ─────────── */
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: 0 var(--e-1);
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: var(--e-3);
+  text-align: left;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--borda);
+  background: var(--superficie-2);
+  color: var(--texto);
+  transition: border-color var(--rapido) var(--curva), background var(--rapido) var(--curva),
+    transform var(--rapido) var(--curva);
+}
+
+.opcao:active {
+  transform: scale(0.985);
+}
+
+.opcaoAtiva {
+  border-color: var(--acento);
+  background: var(--acento-suave);
+}
+
+.opcaoSelo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-sm);
+  background: var(--superficie);
+  color: var(--acento);
+  font-size: var(--t-11);
+  font-weight: var(--peso-negrito);
+  letter-spacing: 0.02em;
+}
+
+.opcaoAtiva .opcaoSelo {
+  background: var(--acento);
+  color: var(--acento-texto);
+}
+
+.opcaoTextos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.opcaoTitulo {
+  font-size: var(--t-14);
+  font-weight: var(--peso-forte);
+}
+
+.opcaoDescricao {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  line-height: 1.45;
+}
+
+.opcaoMarca {
+  flex: 0 0 auto;
+  color: var(--acento);
+}
+
+/* Etiqueta de fidelidade: "exato" / "perde qualidade" / "reescreve" */
+.fidelidade {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 1px var(--e-2);
+  border-radius: var(--r-full);
+  font-size: var(--t-11);
+  font-weight: var(--peso-medio);
+}
+
+.fidExato {
+  background: var(--ok-suave);
+  color: var(--ok);
+}
+
+.fidPerde {
+  background: var(--alerta-suave);
+  color: var(--alerta);
+}
+
+.fidReescreve {
+  background: var(--acento-suave);
+  color: var(--acento);
+}
+
+/* ── Senha ──────────────────────────────────────────────────────────────── */
+
+.senhaCaixa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--toque-min);
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  border: 1.5px solid var(--borda);
+  transition: border-color var(--rapido) var(--curva);
+}
+
+.senhaCaixa:focus-within {
+  border-color: var(--acento);
+}
+
+.senhaEntrada {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  align-self: stretch;
+  padding: 0 var(--e-3);
+  font-size: 16px;
+  color: var(--texto);
+  letter-spacing: 0.02em;
+}
+
+.senhaOlho {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: var(--toque-min);
+  height: var(--toque-min);
+  color: var(--texto-3);
+  border-radius: var(--r-sm);
+}
+
+.senhaOlho:hover {
+  color: var(--texto);
+}
+
+.forca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--e-1) 0;
+}
+
+.forcaBarras {
+  display: flex;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+.forcaBarra {
+  width: 22px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--superficie-3);
+  transition: background var(--normal) var(--curva);
+}
+
+.forcaN0 { background: var(--perigo); }
+.forcaN1 { background: var(--alerta); }
+.forcaN2 { background: var(--acento); }
+.forcaN3 { background: var(--ok); }
+
+.forcaTexto {
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  min-width: 0;
+}
+
+/* ── Comparação antes → depois ──────────────────────────────────────────── */
+
+.balanca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  margin: var(--e-4) var(--e-1) 0;
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie-2);
+}
+
+.balancaLado {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.balancaRotulo {
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+}
+
+.balancaValor {
+  font-size: var(--t-17);
+  font-weight: var(--peso-negrito);
+  font-variant-numeric: tabular-nums;
+}
+
+.balancaGanho {
+  color: var(--ok);
+}
+
+.balancaPerda {
+  color: var(--alerta);
+}
+
+.balancaSeta {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+}
+
+.miniatura {
+  display: block;
+  width: 100%;
+  max-height: 190px;
+  object-fit: contain;
+  margin: var(--e-3) 0 0;
+  border-radius: var(--r-sm);
+  background: var(--superficie-3);
+}
+
+.calculando {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  margin: var(--e-4) var(--e-1) 0;
+  font-size: var(--t-12);
+  color: var(--texto-3);
+}
+
+/* ── Anel de progresso (operação longa) ─────────────────────────────────── */
+
+.anel {
+  display: grid;
+  place-items: center;
+  margin: var(--e-4) auto 0;
+}
+
+.anelSvg {
+  transform: rotate(-90deg);
+}
+
+.anelTrilho {
+  stroke: var(--superficie-3);
+}
+
+.anelValor {
+  stroke: var(--acento);
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--normal) var(--curva);
+}
+
+.anelTexto {
+  margin-top: var(--e-2);
+  font-size: var(--t-12);
+  color: var(--texto-3);
+  text-align: center;
+}
+
+/* Caixa de marcar — desenhada aqui, não a nativa (ver `Marcador`). */
+.caixa {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-xs);
+  border: 1.8px solid var(--borda-forte);
+  background: var(--superficie);
+  color: var(--acento-texto);
+  transition: background var(--rapido) var(--curva), border-color var(--rapido) var(--curva);
+}
+
+.caixaMarcada {
+  background: var(--acento);
+  border-color: var(--acento);
+}

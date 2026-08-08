@@ -1,0 +1,129 @@
+.trilha {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 0 var(--e-1) var(--e-2);
+  font-size: var(--t-12);
+}
+
+.trilhaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.trilhaSeta {
+  color: var(--texto-3);
+  opacity: 0.6;
+  flex: 0 0 auto;
+}
+
+.trilhaBotao {
+  padding: 3px var(--e-2);
+  border-radius: var(--r-xs);
+  color: var(--texto-3);
+  font-size: var(--t-12);
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trilhaBotao:hover {
+  background: var(--superficie-2);
+  color: var(--texto);
+}
+
+.trilhaAtual {
+  color: var(--texto);
+  font-weight: var(--peso-forte);
+  background: var(--superficie-2);
+}
+
+.novaPasta {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--e-2) var(--e-2);
+  margin-bottom: var(--e-1);
+  border-radius: var(--r-sm);
+  font-size: var(--t-14);
+  font-weight: var(--peso-medio);
+  color: var(--acento);
+  text-align: left;
+}
+
+.novaPasta:hover {
+  background: var(--acento-suave);
+}
+
+.novaPastaIcone {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-xs);
+  background: var(--acento-suave);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: 50px;
+  padding: var(--e-2);
+  border-radius: var(--r-sm);
+  text-align: left;
+  color: var(--texto);
+}
+
+.item:hover:not(:disabled) {
+  background: var(--superficie-2);
+}
+
+.item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.itemIcone {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-xs);
+  background: var(--superficie-2);
+  color: var(--c-pasta);
+}
+
+.itemNome {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--t-14);
+}
+
+.itemSeta {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+}
+
+.itemBloqueio {
+  flex: 0 0 auto;
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  padding: 2px var(--e-2);
+  border-radius: var(--r-full);
+  background: var(--superficie-2);
+  white-space: nowrap;
+}

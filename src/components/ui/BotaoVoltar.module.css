@@ -1,0 +1,22 @@
+.voltar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  /* 44px é o alvo mínimo de dedo. O recuo negativo devolve o espaço extra
+     ao layout, então o botão cresce sem empurrar o título pra direita. */
+  width: var(--toque-min);
+  height: var(--toque-min);
+  margin-left: -6px;
+  margin-right: -4px;
+  border-radius: var(--r-full);
+  color: var(--texto);
+  transition: background var(--rapido) var(--curva);
+}
+
+.voltar:hover {
+  background: var(--superficie-2);
+}
+
+.voltar:active {
+  background: var(--superficie-3);
+}

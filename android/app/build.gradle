@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "br.pessoal.acervo"
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "br.pessoal.acervo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2
+        versionName "1.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    /*
+        Assinatura do APK de release.
+
+        A chave e as senhas vivem em `android/keystore.properties`, que NÃO
+        entra no repositório (está no .gitignore, junto com o próprio
+        .keystore). O modelo do arquivo é o `keystore.properties.exemplo`.
+
+        Por que assim, e não a senha escrita aqui: enquanto o projeto morava
+        só nesta máquina, senha em texto claro no build.gradle não protegia
+        nem desprotegia nada. No GitHub protege — e a diferença entre as duas
+        situações é uma linha de comando (`git push`) que se dá sem pensar.
+        Segredo que depende de o repositório continuar privado não é segredo.
+
+        Sem o arquivo, o `assembleDebug` continua funcionando normalmente (o
+        Android assina o debug com a chave de depuração do próprio SDK). Só
+        o `assembleRelease` precisa da chave — e ele avisa em vez de falhar
+        com uma mensagem do Gradle que ninguém entende.
+    */
+    def arquivoChave = rootProject.file('keystore.properties')
+    def temChave = arquivoChave.exists()
+    def chave = new Properties()
+    if (temChave) {
+        arquivoChave.withInputStream { chave.load(it) }
+    }
+
+    signingConfigs {
+        release {
+            if (temChave) {
+                storeFile file(chave['storeFile'] ?: '../acervo.keystore')
+                storePassword chave['storePassword']
+                keyAlias chave['keyAlias']
+                keyPassword chave['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (temChave) {
+                signingConfig signingConfigs.release
+            } else {
+                println '\n  [Acervo] android/keystore.properties nao encontrado.'
+                println '  O APK de release vai sair SEM ASSINATURA e o Android nao instala.'
+                println '  Copie keystore.properties.exemplo, preencha e rode de novo.\n'
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

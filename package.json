@@ -1,0 +1,43 @@
+{
+  "name": "acervo",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Organizador de arquivos e pastas do celular — uso pessoal",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "android:sync": "vite build && cap sync android",
+    "android:open": "cap open android",
+    "testar": "npm run testar:unidade && npm run testar:layout && npm run testar:funcoes && npm run testar:dedo && npm run testar:formatos",
+    "testar:unidade": "node testes/unidade.mjs",
+    "testar:layout": "node testes/layout.mjs",
+    "testar:funcoes": "node testes/funcoes.mjs",
+    "testar:dedo": "node testes/dedo.mjs",
+    "testar:formatos": "node testes/zip-pdf.mjs",
+    "aparelho:preparar": "node testes/preparar-aparelho.mjs",
+    "aparelho:testar": "node testes/aparelho.mjs",
+    "android:release": "vite build && cap sync android && cd android && gradlew assembleRelease"
+  },
+  "dependencies": {
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/filesystem": "^7.0.0",
+    "@capacitor/local-notifications": "^7.0.7",
+    "@capacitor/preferences": "^7.0.0",
+    "@capacitor/share": "^7.0.0",
+    "@fontsource-variable/inter": "^5.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "playwright": "^1.61.1",
+    "vite": "^6.0.7"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,175 @@
+.campos {
+  display: flex;
+  gap: var(--e-2);
+  padding: 0 var(--e-1) var(--e-3);
+}
+
+.campo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+}
+
+.campoNumero {
+  flex: 0 0 108px;
+}
+
+.rotulo {
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+  font-weight: var(--peso-medio);
+}
+
+.entrada {
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 0 var(--e-3);
+  border-radius: var(--r-sm);
+  background: var(--superficie-2);
+  border: 1.5px solid var(--borda);
+  /* 16px trava o zoom automático do iOS ao focar. */
+  font-size: 16px;
+  color: var(--texto);
+  transition: border-color var(--rapido) var(--curva);
+}
+
+.entrada:focus {
+  outline: none;
+  border-color: var(--acento);
+  background: var(--superficie);
+}
+
+.opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: var(--e-2) var(--e-1);
+  margin-bottom: var(--e-3);
+  border-radius: var(--r-sm);
+  text-align: left;
+  font-size: var(--t-13);
+  color: var(--texto);
+}
+
+.opcao:hover {
+  background: var(--superficie-2);
+}
+
+.opcao > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.opcaoNota {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  line-height: 1.4;
+}
+
+.caixinha {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  border: 1.8px solid var(--borda-forte);
+  background: var(--superficie);
+  color: transparent;
+  transition: background var(--rapido) var(--curva), border-color var(--rapido) var(--curva);
+}
+
+.caixinhaMarcada {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--acento-texto);
+}
+
+.previa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--superficie-2);
+}
+
+.previaTitulo {
+  font-size: var(--t-11);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto-3);
+  font-weight: var(--peso-medio);
+}
+
+.previaLinha {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-width: 0;
+  font-size: var(--t-12);
+}
+
+.previaDe {
+  flex: 1 1 42%;
+  min-width: 0;
+  color: var(--texto-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--borda-forte);
+}
+
+.previaSeta {
+  flex: 0 0 auto;
+  color: var(--texto-3);
+}
+
+.previaPara {
+  flex: 1 1 58%;
+  min-width: 0;
+  color: var(--texto);
+  font-weight: var(--peso-medio);
+}
+
+.previaResto {
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  font-style: italic;
+}
+
+.erro {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3);
+  border-radius: var(--r-md);
+  background: var(--perigo-suave);
+  color: var(--perigo);
+  font-size: var(--t-12);
+  line-height: 1.45;
+}
+
+.erro svg {
+  flex: 0 0 auto;
+}
+
+.aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-1) var(--e-1);
+  font-size: var(--t-11);
+  color: var(--texto-3);
+  line-height: 1.45;
+}
+
+.aviso svg {
+  flex: 0 0 auto;
+}

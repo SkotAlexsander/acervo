@@ -1,0 +1,275 @@
+/*
+  FONTE ÚNICA DA VERDADE do visual.
+
+  Nenhum componente escreve cor, sombra ou raio na mão. Todos leem daqui.
+  Trocar a cara do app inteiro é editar este arquivo — não caçar hex em 20 telas.
+
+  O tema tem TRÊS estados, e os três precisam funcionar:
+    · sem atributo + sistema claro  → :root
+    · sem atributo + sistema escuro → @media (prefers-color-scheme: dark)
+    · escolha explícita             → [data-tema="claro"] / [data-tema="escuro"]
+  Por isso toda cor é definida no :root e apenas REDEFINIDA nos outros blocos.
+  Uma cor que só existe dentro de um @media some quando o usuário escolhe o tema na mão.
+*/
+
+:root {
+  /* ── Tipografia ───────────────────────────────────────────────────────── */
+  --fonte: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fonte-num: 'Inter Variable', 'Inter', ui-monospace, 'SF Mono', 'Segoe UI', monospace;
+
+  --t-11: 0.6875rem; /* 11px — etiqueta                */
+  --t-12: 0.75rem;   /* 12px — meta, legenda           */
+  --t-13: 0.8125rem; /* 13px — apoio                   */
+  --t-14: 0.875rem;  /* 14px — corpo                   */
+  --t-15: 0.9375rem; /* 15px — corpo destacado         */
+  --t-17: 1.0625rem; /* 17px — título de item          */
+  --t-20: 1.25rem;   /* 20px — título de tela          */
+  --t-26: 1.625rem;  /* 26px — número grande           */
+  --t-34: 2.125rem;  /* 34px — herói                   */
+
+  --peso-normal: 420;
+  --peso-medio: 540;
+  --peso-forte: 640;
+  --peso-negrito: 720;
+
+  /* ── Espaço (escala de 4) ─────────────────────────────────────────────── */
+  --e-1: 4px;
+  --e-2: 8px;
+  --e-3: 12px;
+  --e-4: 16px;
+  --e-5: 20px;
+  --e-6: 24px;
+  --e-8: 32px;
+  --e-10: 40px;
+  --e-12: 48px;
+
+  /* ── Raio ─────────────────────────────────────────────────────────────── */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-full: 999px;
+
+  /* ── Moldura ──────────────────────────────────────────────────────────── */
+  --moldura-largura: 420px;
+  --moldura-altura: 880px;
+  --barra-altura: 62px;
+  --toque-min: 44px; /* alvo mínimo de dedo — não reduzir */
+
+  /* ══ TEMA CLARO (padrão) ══════════════════════════════════════════════ */
+
+  /* Fundo da página, atrás da moldura */
+  --palco: #eceef5;
+  --palco-2: #f6f7fb;
+
+  /* Superfícies */
+  --fundo: #f7f8fc;
+  --superficie: #ffffff;
+  --superficie-2: #f1f3f9;
+  --superficie-3: #e7eaf3;
+  --vidro: rgba(255, 255, 255, 0.72);
+  --vidro-borda: rgba(255, 255, 255, 0.9);
+
+  /* Texto */
+  --texto: #0f1218;
+  --texto-2: #464e60;
+  --texto-3: #79819a;
+  --texto-invertido: #ffffff;
+
+  /* Traço */
+  --borda: rgba(15, 18, 24, 0.08);
+  --borda-forte: rgba(15, 18, 24, 0.14);
+  --divisor: rgba(15, 18, 24, 0.06);
+
+  /* Marca */
+  --acento: #5b5bd6;
+  --acento-forte: #4a4ac4;
+  --acento-suave: rgba(91, 91, 214, 0.1);
+  --acento-suave-2: rgba(91, 91, 214, 0.18);
+  --acento-texto: #ffffff;
+
+  /* Semânticas */
+  --ok: #14915b;
+  --ok-suave: rgba(20, 145, 91, 0.12);
+  --alerta: #b8730a;
+  --alerta-suave: rgba(184, 115, 10, 0.12);
+  --perigo: #d33b46;
+  --perigo-forte: #b62c36;
+  --perigo-suave: rgba(211, 59, 70, 0.1);
+
+  /* Categorias — o código de cor dos arquivos */
+  --c-pasta: #5b5bd6;
+  --c-imagem: #e5537a;
+  --c-video: #7c5cff;
+  --c-audio: #d97706;
+  --c-doc: #1e88d6;
+  --c-arquivo-zip: #0d9488;
+  --c-app: #4d9a1f;
+  --c-outro: #6b7488;
+
+  /* Sombras — leves e em camadas, nunca uma só borrada */
+  --sombra-1: 0 1px 2px rgba(15, 18, 24, 0.05), 0 1px 1px rgba(15, 18, 24, 0.03);
+  --sombra-2: 0 2px 4px rgba(15, 18, 24, 0.05), 0 4px 12px rgba(15, 18, 24, 0.06);
+  --sombra-3: 0 4px 8px rgba(15, 18, 24, 0.06), 0 12px 28px rgba(15, 18, 24, 0.1);
+  --sombra-moldura: 0 2px 6px rgba(15, 18, 24, 0.06), 0 20px 50px rgba(15, 18, 24, 0.14),
+    0 60px 120px rgba(15, 18, 24, 0.08);
+  --sombra-acento: 0 4px 14px rgba(91, 91, 214, 0.28);
+
+  /* Efeito de fundo (as manchas coloridas) */
+  --mancha-1: rgba(91, 91, 214, 0.5);
+  --mancha-2: rgba(229, 83, 122, 0.34);
+  --mancha-3: rgba(13, 148, 136, 0.3);
+  /* A quarta mancha é QUENTE de propósito: o resto da paleta é fria (roxo,
+     rosa, teal) e sem um contraponto morno o fundo lê como "tela de sistema".
+     Ela fica embaixo à esquerda, longe do centro da moldura. */
+  --mancha-4: rgba(217, 119, 6, 0.2);
+  /* Faixa de luz que varre o fundo devagar. */
+  --faixa-cor: rgba(255, 255, 255, 0.5);
+  --faixa-opacidade: 0.45;
+  /* Vinheta: escurece as bordas pra "levantar" a moldura no centro. */
+  --vinheta: rgba(15, 18, 24, 0.1);
+  --mancha-opacidade: 0.55;
+  --grao-opacidade: 0.4;
+
+  /* Movimento */
+  --rapido: 120ms;
+  --normal: 200ms;
+  --lento: 340ms;
+  --curva: cubic-bezier(0.32, 0.72, 0, 1);
+  --curva-saida: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ══ TEMA ESCURO ═══════════════════════════════════════════════════════════ */
+/* Definido duas vezes de propósito: uma pro sistema, outra pra escolha manual.
+   O `:not([data-tema='claro'])` faz o botão "claro" vencer o sistema escuro. */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) {
+    --palco: #05070c;
+    --palco-2: #0a0d14;
+
+    --fundo: #0b0e15;
+    --superficie: #141824;
+    --superficie-2: #1b2030;
+    --superficie-3: #232939;
+    --vidro: rgba(24, 29, 42, 0.66);
+    --vidro-borda: rgba(255, 255, 255, 0.08);
+
+    --texto: #eef1f8;
+    --texto-2: #a8b0c4;
+    --texto-3: #6f7891;
+    --texto-invertido: #0b0e15;
+
+    --borda: rgba(255, 255, 255, 0.08);
+    --borda-forte: rgba(255, 255, 255, 0.16);
+    --divisor: rgba(255, 255, 255, 0.06);
+
+    --acento: #8b8bf5;
+    --acento-forte: #a3a3ff;
+    --acento-suave: rgba(139, 139, 245, 0.14);
+    --acento-suave-2: rgba(139, 139, 245, 0.24);
+    --acento-texto: #0b0e15;
+
+    --ok: #3ddc97;
+    --ok-suave: rgba(61, 220, 151, 0.14);
+    --alerta: #f0b429;
+    --alerta-suave: rgba(240, 180, 41, 0.14);
+    --perigo: #ff6b7a;
+    --perigo-forte: #ff8a95;
+    --perigo-suave: rgba(255, 107, 122, 0.14);
+
+    --c-pasta: #8b8bf5;
+    --c-imagem: #ff7ba1;
+    --c-video: #a78bfa;
+    --c-audio: #fbbf24;
+    --c-doc: #56b8ff;
+    --c-arquivo-zip: #2dd4bf;
+    --c-app: #86d94f;
+    --c-outro: #97a0b5;
+
+    --sombra-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --sombra-2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.35);
+    --sombra-3: 0 4px 10px rgba(0, 0, 0, 0.45), 0 16px 36px rgba(0, 0, 0, 0.5);
+    --sombra-moldura: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 70px rgba(0, 0, 0, 0.7);
+    --sombra-acento: 0 4px 16px rgba(139, 139, 245, 0.3);
+
+    --mancha-1: rgba(109, 106, 255, 0.72);
+    --mancha-2: rgba(226, 74, 138, 0.55);
+    --mancha-3: rgba(16, 176, 160, 0.52);
+    --mancha-4: rgba(251, 191, 36, 0.26);
+    --faixa-cor: rgba(160, 170, 255, 0.16);
+    --faixa-opacidade: 0.6;
+    --vinheta: rgba(0, 0, 0, 0.55);
+    --mancha-opacidade: 0.72;
+    --grao-opacidade: 0.55;
+  }
+}
+
+:root[data-tema='escuro'] {
+  --palco: #05070c;
+  --palco-2: #0a0d14;
+
+  --fundo: #0b0e15;
+  --superficie: #141824;
+  --superficie-2: #1b2030;
+  --superficie-3: #232939;
+  --vidro: rgba(24, 29, 42, 0.66);
+  --vidro-borda: rgba(255, 255, 255, 0.08);
+
+  --texto: #eef1f8;
+  --texto-2: #a8b0c4;
+  --texto-3: #6f7891;
+  --texto-invertido: #0b0e15;
+
+  --borda: rgba(255, 255, 255, 0.08);
+  --borda-forte: rgba(255, 255, 255, 0.16);
+  --divisor: rgba(255, 255, 255, 0.06);
+
+  --acento: #8b8bf5;
+  --acento-forte: #a3a3ff;
+  --acento-suave: rgba(139, 139, 245, 0.14);
+  --acento-suave-2: rgba(139, 139, 245, 0.24);
+  --acento-texto: #0b0e15;
+
+  --ok: #3ddc97;
+  --ok-suave: rgba(61, 220, 151, 0.14);
+  --alerta: #f0b429;
+  --alerta-suave: rgba(240, 180, 41, 0.14);
+  --perigo: #ff6b7a;
+  --perigo-forte: #ff8a95;
+  --perigo-suave: rgba(255, 107, 122, 0.14);
+
+  --c-pasta: #8b8bf5;
+  --c-imagem: #ff7ba1;
+  --c-video: #a78bfa;
+  --c-audio: #fbbf24;
+  --c-doc: #56b8ff;
+  --c-arquivo-zip: #2dd4bf;
+  --c-app: #86d94f;
+  --c-outro: #97a0b5;
+
+  --sombra-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sombra-2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.35);
+  --sombra-3: 0 4px 10px rgba(0, 0, 0, 0.45), 0 16px 36px rgba(0, 0, 0, 0.5);
+  --sombra-moldura: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 70px rgba(0, 0, 0, 0.7);
+  --sombra-acento: 0 4px 16px rgba(139, 139, 245, 0.3);
+
+  --mancha-1: rgba(109, 106, 255, 0.72);
+  --mancha-2: rgba(226, 74, 138, 0.55);
+  --mancha-3: rgba(16, 176, 160, 0.52);
+  --mancha-4: rgba(251, 191, 36, 0.26);
+  --faixa-cor: rgba(160, 170, 255, 0.16);
+  --faixa-opacidade: 0.6;
+  --vinheta: rgba(0, 0, 0, 0.55);
+  --mancha-opacidade: 0.72;
+  --grao-opacidade: 0.55;
+}
+
+/* Escolha explícita "claro" precisa vencer o sistema escuro: como o bloco
+   :root já traz os valores claros e o @media é neutralizado pelo :not(),
+   não é preciso repetir nada aqui. Este seletor existe só pra documentar isso. */
+:root[data-tema='claro'] {
+  color-scheme: light;
+}
