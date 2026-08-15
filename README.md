@@ -9,6 +9,19 @@ arquivos de verdade). É o mesmo código nos dois casos.
 
 **O APK existe e foi testado num Android de verdade** — ver "Instalar no celular".
 
+<p align="center">
+  <img src="docs/imagens/01-inicio.png" width="220" alt="Início: busca, uso do armazenamento e atalhos">
+  <img src="docs/imagens/02-pastas.png" width="220" alt="Navegador de pastas, com tamanho e contagem de cada uma">
+  <img src="docs/imagens/03-liberar-espaco.png" width="220" alt="Limpeza: o que dá pra recuperar, separando o que é seguro do que precisa da sua leitura">
+  <img src="docs/imagens/04-espaco.png" width="220" alt="Onde foi meu espaço: as pastas que mais ocupam, em ordem">
+</p>
+
+> A terceira tela é a que resume o app. Ela separa **11,1 MB "recuperáveis com
+> segurança"** (lixeira e cópias repetidas) dos **11,2 GB** em arquivos grandes e
+> dos 4,4 GB parados há mais de um ano — que aparecem na lista, mas com o aviso
+> de que *"o resto da lista precisa da sua leitura"*. Nenhum limpador de celular
+> faz essa distinção, e é ela que separa liberar espaço de perder coisa.
+
 ---
 
 ## Ver funcionando agora, no PC
@@ -37,6 +50,11 @@ npm run preview
 ```
 
 O `dist/index.html` abre direto no navegador, sem servidor (o app usa rotas com `#`).
+
+> As capturas deste README foram feitas **desse jeito**: `npm run build`, servir a
+> pasta `dist/`, fotografar em 390×844. São o app rodando, não montagem — os 522
+> arquivos e os 36,1 GB que aparecem nelas vêm da mesma semente fixa que você vai
+> ver ao rodar aí.
 
 ---
 
@@ -168,6 +186,10 @@ de dizer sim e não fazer nada.
 2. **A Limpeza não limpa sozinha.** Ela mostra o que achou e deixa VOCÊ marcar. As
    cópias repetidas já vêm pré-marcadas, mas sempre poupando a mais antiga (o
    original). E ela avisa: comparação é por nome + tamanho, **não** por conteúdo.
+
+<p align="center">
+  <img src="docs/imagens/05-ajustes.png" width="240" alt="Ajustes: tema, efeitos de fundo, visão padrão e notificações">
+</p>
 
 ---
 
